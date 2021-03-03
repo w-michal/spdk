@@ -1270,6 +1270,12 @@ nvme_ctrlr_set_doorbell_buffer_config(struct spdk_nvme_ctrlr *ctrlr)
 	int rc = 0;
 	uint64_t prp1, prp2, len;
 
+	if (!SPDK_SHADOW_DOORBELL_ENABLED) {
+		nvme_ctrlr_set_state(ctrlr, NVME_CTRLR_STATE_SET_KEEP_ALIVE_TIMEOUT,
+				     ctrlr->opts.admin_timeout_ms);
+		return 0;
+	}
+
 	if (!ctrlr->cdata.oacs.doorbell_buffer_config) {
 		nvme_ctrlr_set_state(ctrlr, NVME_CTRLR_STATE_SET_KEEP_ALIVE_TIMEOUT,
 				     ctrlr->opts.admin_timeout_ms);

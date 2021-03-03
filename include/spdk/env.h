@@ -50,6 +50,11 @@ extern "C" {
 #define SPDK_ENV_SOCKET_ID_ANY	(-1)
 #define SPDK_ENV_LCORE_ID_ANY	(UINT32_MAX)
 
+ /**
+ * Optional NVMe "shadow doorbell" extension.
+ */
+#define SPDK_SHADOW_DOORBELL_ENABLED false
+
 /**
  * Memory is dma-safe.
  */
